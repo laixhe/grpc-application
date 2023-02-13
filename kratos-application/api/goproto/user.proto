@@ -1,0 +1,36 @@
+syntax = "proto3";	// 指定proto版本
+
+package goproto;    // 指定包名，可以避免对 message 类型之间的名字冲突
+
+// 生成 go文件 的包路径
+// . 表示生成的 go文件 的存放地址，会自动生成目录的
+// simple 表示生成的 go文件 所属的包名
+// option go_package = "./;goproto";
+option go_package = "kratos-application/api/goproto;goproto";
+
+// 枚举类型第一个字段必须为 0
+enum UserSex {
+    MEN   = 0;
+    WOMEN = 1;
+}
+
+// GetUser 请求结构
+message GetUserRequest {
+    int64 userid = 1;
+}
+
+// GetUser 响应结构
+message GetUserResponse {
+    int64   userid   = 1;
+    string  username = 2;
+    UserSex sex      = 3;
+}
+
+// GetUserList 请求结构
+message GetUserListRequest {}
+
+// 响应结构
+message UserListResponse {
+	// repeated 重复(数组)
+	repeated GetUserResponse list = 1;
+}

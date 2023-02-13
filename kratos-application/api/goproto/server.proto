@@ -1,0 +1,25 @@
+syntax = "proto3";	// 指定proto版本
+
+package goproto;    // 指定包名，可以避免对 message 类型之间的名字冲突
+
+// 生成 go文件 的包路径
+// . 表示生成的 go文件 的存放地址，会自动生成目录的
+// simple 表示生成的 go文件 所属的包名
+// option go_package = "./;goproto";
+option go_package = "kratos-application/api/goproto;goproto";
+
+import "google/api/annotations.proto";
+import "goproto/user.proto";
+
+// 定义 User 服务
+service User {
+    // 定义 GetUser 方法 - 获取某个 user 数据
+    rpc GetUser(GetUserRequest) returns (GetUserResponse) {
+        option (google.api.http) = {
+            post: "/user/get"
+            body: "*"
+          };
+    }
+    // 定义 GetUserList 方法 - 获取 user 所有数据
+    rpc GetUserList(GetUserListRequest) returns (UserListResponse) {}
+}
