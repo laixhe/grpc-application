@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package api;
+
+option go_package = "go-grpc/api/gen/api;api";
+
+// 错误状态码
+enum ECode {
+    EOK          = 0; // 成功
+    EUnknown     = 1; // 未知错误
+    EService     = 2; // 服务错误
+    EParam       = 3; // 参数错误
+}

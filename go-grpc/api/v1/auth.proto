@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package v1api;
+
+option go_package = "go-grpc/api/gen/v1api;v1api";
+
+import "v1/user.proto";
+
+// 请求-注册
+message AuthRegisterRequest {
+  string email = 1;    // @gotags: binding:"required,email"
+  string password = 2; // @gotags: binding:"required,min=8"
+}
+
+// 响应-注册
+message AuthRegisterResponse {
+  string token = 1;
+  User user = 2;
+}
+
+// 请求-登录
+message AuthLoginRequest {
+  string email = 1;    // @gotags: binding:"required,email"
+  string password = 2; // @gotags: binding:"required,min=8"
+}
+
+// 响应-登录
+message AuthLoginResponse {
+  string token = 1;
+  User user = 2;
+}
+
+// 请求-刷新Jwt
+message AuthRefreshRequest{
+}
+
+// 响应-刷新Jwt
+message AuthRefreshResponse {
+  string token = 1;
+}

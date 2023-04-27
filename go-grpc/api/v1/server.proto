@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package v1api;
+
+option go_package = "go-grpc/api/gen/v1api;v1api";
+
+import "google/api/annotations.proto";
+import "v1/auth.proto";
+
+service V1 {
+    // 注册用户
+    rpc AuthRegister(AuthRegisterRequest) returns (AuthRegisterResponse) {
+        option (google.api.http) = {
+            post: "/v1/auth/register"
+            body: "*"
+          };
+    }
+    // 登录
+    rpc AuthLogin(AuthLoginRequest) returns (AuthLoginResponse) {
+        option (google.api.http) = {
+            post: "/v1/auth/login"
+            body: "*"
+        };
+    }
+    // 刷新Jwt
+    rpc AuthRefresh(AuthRefreshRequest) returns (AuthRefreshResponse) {
+        option (google.api.http) = {
+            post: "/v1/auth/refresh"
+            body: "*"
+        };
+    }
+}

@@ -1,0 +1,36 @@
+servers:
+  http:
+    ip: 0.0.0.0
+    port: 5800
+  grpc:
+    ip: 0.0.0.0
+    port: 5900
+
+log:
+  # 日志级别 debug info warn error
+  level: debug
+
+mysql:
+  # 连接地址
+  dsn: root:123456@tcp(127.0.0.1:3306)/test?charset=utf8mb4&parseTime=True&loc=Local
+  # 设置空闲连接池中连接的最大数量
+  max_idle_count: 10
+  # 设置打开数据库连接的最大数量
+  max_open_count: 150
+  # 设置了连接可复用的最大时间(要比数据库设置连接超时时间少)(单位秒)
+  max_life_time: 300
+
+redis:
+  addr: 127.0.0.1:6379
+  # 选择N号数据库
+  db_num: 0
+  # 密码
+  password:
+  # 最大链接数
+  pool_size: 100
+  # 空闲链接数
+  min_idle_conn: 5
+
+jwt:
+  secret_key: b9f07bfd4eaf7b8a63d9
+  expire_time: 2592000

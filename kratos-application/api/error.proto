@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package api;
+
+option go_package = "kratos-application/api/gen/api;api";
+
+//import "errors/errors.proto";
+
+// 错误状态码
+enum ECode {
+    //    // 设置缺省错误码
+    //    option (errors.default_code) = 500;
+
+    // 通用 0 - 99
+    EOK          = 0; // 成功
+    EUnknown     = 1; // 未知错误
+    EService     = 2; // 服务错误
+    EParam       = 3; // 参数错误
+
+    // 用户  100 - 199
+    EAuthNotLogin  = 100; // 未授权登录
+    EAuthExpire    = 101; // 授权过期
+    EUserExist     = 102; // 用户已存在
+    EUserNotExist  = 103; // 用户不存在
+    EEmailExist    = 104; // 邮箱已存在
+    EEmailNotExist = 105; // 邮箱不存在
+    EPasswordError = 106; // 密码错误
+}
