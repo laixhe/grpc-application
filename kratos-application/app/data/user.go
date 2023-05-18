@@ -23,11 +23,11 @@ func (*User) TableName() string {
 }
 
 func (*User) Create(user *User) error {
-	return gormx.Create(user)
+	return gormx.Client().Create(user).Error
 }
 
 func (*User) FirstEmail(email string) (User, error) {
 	var user User
-	err := gormx.Where("email = ?", email).First(&user).Error
+	err := gormx.Client().Where("email = ?", email).First(&user).Error
 	return user, err
 }

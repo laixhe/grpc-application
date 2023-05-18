@@ -34,116 +34,11 @@ func (g *Gormx) Ping() error {
 	return sqlDB.Ping()
 }
 
-// Client get db client
-func (g *Gormx) Client() *gorm.DB {
-	return g.client
-}
-
-// Table 定义表名
-func (g *Gormx) Table(name string, args ...interface{}) *gorm.DB {
-	return g.client.Table(name, args...)
-}
-
-// Model 指定操作模型
-func (g *Gormx) Model(value interface{}) *gorm.DB {
-	return g.client.Model(value)
-}
-
-// Create 创建数据
-func (g *Gormx) Create(value interface{}) error {
-	return g.client.Create(value).Error
-}
-
-// First 获取第一条记录（主键升序），且没有找到记录时，它会返回 gorm.ErrRecordNotFound 错误
-func (g *Gormx) First(dest interface{}, conds ...interface{}) *gorm.DB {
-	return g.client.First(dest, conds...)
-}
-
-// Find 获取多条记录（查找所有符合给定条件的记录）
-func (g *Gormx) Find(dest interface{}, conds ...interface{}) *gorm.DB {
-	return g.client.Find(dest, conds...)
-}
-
-// Select 选择指定查询、创建、更新时所需的字段，默认情况下，gorm 将选择所有字段
-func (g *Gormx) Select(query interface{}, args ...interface{}) *gorm.DB {
-	return g.client.Select(query, args...)
-}
-
-// Where 查询条件
-func (g *Gormx) Where(query interface{}, args ...interface{}) *gorm.DB {
-	return g.client.Where(query, args...)
-}
-
-// Raw 查询原生 SQL 构建器
-func (g *Gormx) Raw(sql string, values ...interface{}) *gorm.DB {
-	return g.client.Raw(sql, values...)
-}
-
-// Exec 执行原生 SQL 构建器
-func (g *Gormx) Exec(sql string, values ...interface{}) *gorm.DB {
-	return g.client.Exec(sql, values...)
-}
-
 var db *Gormx
-
-// DB get gormx
-func DB() *Gormx {
-	return db
-}
 
 // Client get db client
 func Client() *gorm.DB {
 	return db.client
-}
-
-// Ping 判断服务是否可用
-func Ping() error {
-	return db.Ping()
-}
-
-// Table 定义表名
-func Table(name string, args ...interface{}) *gorm.DB {
-	return db.Table(name, args...)
-}
-
-// Model 指定操作模型
-func Model(value interface{}) *gorm.DB {
-	return db.Model(value)
-}
-
-// Create 创建数据
-func Create(value interface{}) error {
-	return db.Create(value)
-}
-
-// First 获取第一条记录（主键升序），且没有找到记录时，它会返回 gorm.ErrRecordNotFound 错误
-func First(dest interface{}, conds ...interface{}) *gorm.DB {
-	return db.First(dest, conds...)
-}
-
-// Find 获取多条记录（查找所有符合给定条件的记录）
-func Find(dest interface{}, conds ...interface{}) *gorm.DB {
-	return db.Find(dest, conds...)
-}
-
-// Select 选择指定查询、创建、更新时所需的字段，默认情况下，gorm 将选择所有字段
-func Select(query interface{}, args ...interface{}) *gorm.DB {
-	return db.Select(query, args...)
-}
-
-// Where 查询条件
-func Where(query interface{}, args ...interface{}) *gorm.DB {
-	return db.Where(query, args...)
-}
-
-// Raw 查询原生 SQL 构建器
-func Raw(sql string, values ...interface{}) *gorm.DB {
-	return db.Raw(sql, values...)
-}
-
-// Exec 执行原生 SQL 构建器
-func Exec(sql string, values ...interface{}) *gorm.DB {
-	return db.Exec(sql, values...)
 }
 
 // Connect 连接数据库
@@ -151,7 +46,7 @@ func Connect(c *Config) (*Gormx, error) {
 
 	defaultLogger := logger.New(NewWriter(stdLog.New(os.Stdout, "\r\n", stdLog.LstdFlags)), logger.Config{
 		SlowThreshold: 200 * time.Millisecond,
-		LogLevel:      logger.Warn,
+		LogLevel:      logger.Info,
 		Colorful:      true,
 	})
 

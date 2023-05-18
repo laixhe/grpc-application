@@ -39,11 +39,6 @@ func (r *Redisx) Client() *redis.Client {
 
 var db *Redisx
 
-// DB get redisx
-func DB() *Redisx {
-	return db
-}
-
 // Client get redis client
 func Client() *redis.Client {
 	return db.client
