@@ -24,9 +24,9 @@ api:
 		--go-grpc_out=../ \
 		$(API_PROTO_FILES)
 	protoc-go-inject-tag -input="./api/gen/v1api/*.pb.go"
+	swag init
 
 .PHONY: build
 build:
-	swag init
 	go build -ldflags "-X main.Version=$(VERSION)"
 
