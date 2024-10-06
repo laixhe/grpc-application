@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package auth;
+
+option go_package = "kratos-application/api/gen/auth;auth";
+
+import "proto/user/user.proto";
+import "proto/enum/elogin/login.proto";
+
+// 请求-登录注册
+message RegisterLoginRequest {
+  // 登录注册方式：1=手机 2=移动号码认证 3=微信
+  elogin.LoginType type_id = 1;
+  // 手机号码
+  string phone = 2;
+  // 手机验证码
+  string phone_verification = 3;
+  // 根据 type_id 方式：1=手机(不用传) 2=移动号码认证 3=微信code
+  string code_token = 4;
+}
+
+// 响应-注册
+message RegisterLoginResponse {
+  string token = 1;
+  user.User user = 2;
+}

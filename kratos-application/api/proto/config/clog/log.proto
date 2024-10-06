@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package clog;
+
+option go_package = "kratos-application/api/gen/config/clog;clog";
+
+// 开发模式
+enum RunType {
+    console  = 0; // 终端
+    file     = 1; // 文件
+}
+
+// 日志级别
+enum LevelType {
+    debug = 0;
+    info  = 1;
+    warn  = 2;
+    error = 3;
+}
+
+// 日志配置
+message Log {
+    // 日志模式 console file
+    string run = 1;
+    // 日志文件路径
+    string path = 2;
+    // 日志级别 debug  info  error
+    string level = 3;
+    // 每个日志文件保存大小 *M
+    int32 max_size = 4;
+    // 保留 N 个备份
+    int32 max_backups = 5;
+    // 保留 N 天
+    int32 max_age = 6;
+}

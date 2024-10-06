@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package cauth;
+
+option go_package = "kratos-application/api/gen/config/cauth;cauth";
+
+import "google/protobuf/duration.proto";
+
+// 鉴权配置
+message Jwt {
+  // jwt secret key
+  string secret_key = 1;
+  // 过期时长(单位秒)
+  google.protobuf.Duration expire_time = 2;
+}

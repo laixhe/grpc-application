@@ -1,0 +1,45 @@
+app:
+  version: "v0.1"
+  mode: debug
+
+log:
+  path: logs.log
+  run_type: console
+  level: debug
+  max_size: 20
+  max_backups: 20
+  max_age: 7
+
+servers:
+  http:
+    ip: 0.0.0.0
+    port: 5800
+    timeout: 0s
+  grpc:
+    ip: 0.0.0.0
+    port: 5900
+    timeout: 0s
+
+jwt:
+  secret_key: b9f07bfd4eaf7b8a63d9
+  expire_time: 2592000s
+
+db:
+  dsn: root:123456@tcp(127.0.0.1:3306)/webapi?charset=utf8mb4&parseTime=True&loc=Local
+  max_idle_count: 10
+  max_open_count: 150
+  max_life_time: 300s
+
+mongodb:
+  uri: mongodb://127.0.0.1:27017
+  database: "test"
+  max_pool_size: 100
+  min_pool_size: 5
+  max_conn_idle_time: 300s
+
+redis:
+  addr: 127.0.0.1:6379
+  db_num: 0
+  password:
+  pool_size: 100
+  min_idle_conn: 5

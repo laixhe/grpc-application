@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package auth;
+
+option go_package = "kratos-application/api/gen/auth;auth";
+
+// 请求-刷新Jwt
+message RefreshRequest{
+}
+
+// 响应-刷新Jwt
+message RefreshResponse {
+  string token = 1;
+}

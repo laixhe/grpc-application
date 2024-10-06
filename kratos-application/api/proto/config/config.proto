@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package config;
+
+option go_package = "kratos-application/api/gen/config;config";
+
+import "proto/config/capp/app.proto";
+import "proto/config/clog/log.proto";
+import "proto/config/cauth/auth.proto";
+import "proto/config/cserver/server.proto";
+import "proto/config/cdb/db.proto";
+import "proto/config/cmongodb/mongodb.proto";
+import "proto/config/credis/redis.proto";
+
+
+// 总配置
+message Config {
+  capp.App         app      = 1;
+  clog.Log         log      = 2;
+  cserver.Servers  servers  = 3;
+  cauth.Jwt        jwt      = 4;
+  cdb.DB           db       = 5;
+  credis.Redis     redis    = 6;
+  cmongodb.MongoDB mongodb  = 7;
+}

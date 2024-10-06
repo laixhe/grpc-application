@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package eapp;
+
+option go_package = "kratos-application/api/gen/enum/eapp;eapp";
+
+// 平台
+enum platform {
+  unknown   = 0;
+  android   = 1;
+  ios       = 2;
+}

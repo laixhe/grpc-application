@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package auth;
+
+option go_package = "kratos-application/api/gen/auth;auth";
+
+import "google/api/annotations.proto";
+import "proto/auth/register_login.proto";
+import "proto/auth/refresh.proto";
+
+service SAuth {
+    // 登录注册
+    rpc RegisterLogin(RegisterLoginRequest) returns (RegisterLoginResponse) {
+        option (google.api.http) = {
+            post: "/auth/register_login"
+            body: "*"
+          };
+    }
+    // 刷新Jwt
+    rpc Refresh(RefreshRequest) returns (RefreshResponse) {
+        option (google.api.http) = {
+            post: "/auth/refresh"
+            body: "*"
+        };
+    }
+}

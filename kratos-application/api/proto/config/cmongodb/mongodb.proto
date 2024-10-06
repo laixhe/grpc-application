@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package cmongodb;
+
+option go_package = "kratos-application/api/gen/config/cmongodb;cmongodb";
+
+import "google/protobuf/duration.proto";
+
+// MongoDB数据库配置
+message MongoDB {
+  // 连接地址
+  string uri = 1;
+  // 指定数据库
+  string database = 2;
+  // 最大连接的数量
+  uint64 max_pool_size = 3;
+  // 最小连接的数量
+  uint64 min_pool_size = 4;
+  // 最大连接的空闲时间(设置了连接可复用的最大时间)(单位秒)
+  google.protobuf.Duration max_conn_idle_time = 5;
+}

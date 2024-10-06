@@ -1,0 +1,142 @@
+definitions:
+  auth.RefreshRequest:
+    type: object
+  auth.RefreshResponse:
+    properties:
+      token:
+        type: string
+    type: object
+  auth.RegisterLoginRequest:
+    properties:
+      code_token:
+        description: 根据 type_id 方式：1=手机(不用传) 2=移动号码认证 3=微信code
+        type: string
+      phone:
+        description: 手机号码
+        type: string
+      phone_verification:
+        description: 手机验证码
+        type: string
+      type_id:
+        allOf:
+        - $ref: '#/definitions/elogin.LoginType'
+        description: 登录注册方式：1=手机 2=移动号码认证 3=微信
+    type: object
+  auth.RegisterLoginResponse:
+    properties:
+      token:
+        type: string
+      user:
+        $ref: '#/definitions/user.User'
+    type: object
+  elogin.LoginType:
+    enum:
+    - 0
+    - 1
+    - 2
+    - 3
+    type: integer
+    x-enum-comments:
+      LoginType_TMobile: 移动号码认证
+      LoginType_TPhone: 手机
+      LoginType_TUnknown: 未知错误
+      LoginType_TWechat: 微信
+    x-enum-varnames:
+    - LoginType_TUnknown
+    - LoginType_TPhone
+    - LoginType_TMobile
+    - LoginType_TWechat
+  euser.SexType:
+    enum:
+    - 0
+    - 1
+    - 2
+    type: integer
+    x-enum-comments:
+      SexType_SexFemale: 女
+      SexType_SexMale: 男
+    x-enum-varnames:
+    - SexType_SexUnknown
+    - SexType_SexMale
+    - SexType_SexFemale
+  user.User:
+    properties:
+      account:
+        description: 账号
+        type: string
+      avatar_url:
+        description: 头像地址
+        type: string
+      birthday:
+        description: 生日(年-月-日)
+        type: string
+      cover_url:
+        description: 封面地址
+        type: string
+      email:
+        description: 邮箱
+        type: string
+      nickname:
+        description: 昵称
+        type: string
+      phone:
+        description: 手机号码
+        type: string
+      phone_area:
+        description: 手机国家电话区号
+        type: string
+      sex:
+        allOf:
+        - $ref: '#/definitions/euser.SexType'
+        description: 性别 1=男 2=女
+      uid:
+        description: 用户ID
+        type: integer
+      uname:
+        description: 用户名
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /auth/refresh:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Bearer token令牌
+        in: header
+        name: Authorization
+        type: string
+      - description: 请求body参数
+        in: body
+        name: body
+        schema:
+          $ref: '#/definitions/auth.RefreshRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/auth.RefreshResponse'
+      summary: 刷新Jwt
+  /auth/register_login:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 请求body参数
+        in: body
+        name: body
+        schema:
+          $ref: '#/definitions/auth.RegisterLoginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/auth.RegisterLoginResponse'
+      summary: 注册用户
+swagger: "2.0"

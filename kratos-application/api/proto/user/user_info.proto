@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "kratos-application/api/gen/user;user";
+
+import "proto/user/user.proto";
+
+// 请求-用户信息
+message UserInfoRequest {
+  // 用户ID
+  uint64 uid  = 1;
+}
+
+// 响应-用户信息
+message UserInfoResponse {
+  user.User user = 1;
+}

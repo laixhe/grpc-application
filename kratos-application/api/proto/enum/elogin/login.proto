@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package elogin;
+
+option go_package = "kratos-application/api/gen/enum/elogin;elogin";
+
+// 登录注册方式
+enum LoginType {
+    TUnknown     = 0; // 未知错误
+    TPhone       = 1; // 手机
+    TMobile      = 2; // 移动号码认证
+    TWechat      = 3; // 微信
+}

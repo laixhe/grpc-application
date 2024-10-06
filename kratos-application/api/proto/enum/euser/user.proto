@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package euser;
+
+option go_package = "kratos-application/api/gen/enum/euser;euser";
+
+// 用户性别
+enum SexType {
+    SexUnknown    = 0;
+    SexMale       = 1; // 男
+    SexFemale     = 2; // 女
+}

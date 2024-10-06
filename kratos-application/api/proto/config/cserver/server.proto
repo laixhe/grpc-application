@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package cserver;
+
+option go_package = "kratos-application/api/gen/config/cserver;cserver";
+
+import "google/protobuf/duration.proto";
+
+// 服务器配置
+message Server {
+  // 运行IP
+  string ip = 1;
+  // 运行端口
+  int32 port = 2;
+  // 超时时间
+  google.protobuf.Duration timeout = 3;
+}
+
+// 服务器组
+message Servers {
+  Server http = 1;
+  Server grpc = 2;
+}

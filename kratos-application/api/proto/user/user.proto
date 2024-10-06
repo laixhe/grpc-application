@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "kratos-application/api/gen/user;user";
+
+import "proto/enum/euser/user.proto";
+
+message User {
+  // 用户ID
+  uint64 uid        = 1;
+  // 账号
+  string account    = 2;
+  // 邮箱
+  string email      = 3;
+  // 手机国家电话区号
+  string phone_area = 4;
+  // 手机号码
+  string phone      = 5;
+  // 用户名
+  string uname      = 6;
+  // 昵称
+  string nickname   = 7;
+  // 性别 1=男 2=女
+  euser.SexType sex = 8;
+  // 生日(年-月-日)
+  string birthday   = 9;
+  // 头像地址
+  string avatar_url = 10;
+  // 封面地址
+  string cover_url  = 11;
+}
