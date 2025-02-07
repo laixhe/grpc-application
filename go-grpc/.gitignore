@@ -1,9 +1,5 @@
 .vscode/
 .idea/
 
-api/gen/
-bin/
-
-Thumbs.db
-.DS_Store
+*.log
 *.exe

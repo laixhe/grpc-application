@@ -1,8 +1,5 @@
 .vscode/
 .idea/
 
-test/
-upload_files/
-
 *.log
 *.exe

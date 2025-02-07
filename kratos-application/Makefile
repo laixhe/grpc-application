@@ -27,9 +27,9 @@ api:
 		--go-http_out=../ \
 		--go-grpc_out=../ \
 		$(API_PROTO_FILES)
-	swag init
 
 .PHONY: build
 build:
+	swag init
 	go build -ldflags "-X main.Version=$(VERSION)"
 
