@@ -1,0 +1,237 @@
+# Generated with protoc-gen-openapi
+# https://github.com/google/gnostic/tree/master/cmd/protoc-gen-openapi
+
+openapi: 3.0.3
+info:
+    title: ""
+    version: 0.0.1
+paths:
+    /api/v1/auth/login:
+        post:
+            tags:
+                - SAuth
+            description: 登录
+            operationId: SAuth_Login
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/pbauth.LoginRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/pbauth.LoginResponse'
+    /api/v1/auth/refresh:
+        post:
+            tags:
+                - SAuth
+            description: 刷新Jwt
+            operationId: SAuth_Refresh
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/pbauth.RefreshRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/pbauth.RefreshResponse'
+    /api/v1/auth/register:
+        post:
+            tags:
+                - SAuth
+            description: 注册
+            operationId: SAuth_Register
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/pbauth.RegisterRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/pbauth.RegisterResponse'
+    /api/v1/user/info:
+        get:
+            tags:
+                - SUser
+            description: 用户信息
+            operationId: SUser_Info
+            parameters:
+                - name: uid
+                  in: query
+                  description: 用户ID
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/pbuser.User'
+    /api/v1/user/list:
+        get:
+            tags:
+                - SUser
+            description: 用户列表
+            operationId: SUser_List
+            parameters:
+                - name: pageSize
+                  in: query
+                  description: 每页数量（分页）
+                  schema:
+                    type: string
+                - name: offsetId
+                  in: query
+                  description: 偏移id（分页）
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/pbuser.ListResponse'
+    /api/v1/user/update:
+        post:
+            tags:
+                - SUser
+            description: 用户更新
+            operationId: SUser_Update
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/pbuser.UpdateRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/pbuser.User'
+components:
+    schemas:
+        pbauth.LoginRequest:
+            type: object
+            properties:
+                email:
+                    type: string
+                    description: 邮箱
+                password:
+                    type: string
+                    description: 密码
+            description: 请求-登录
+        pbauth.LoginResponse:
+            type: object
+            properties:
+                token:
+                    type: string
+                user:
+                    $ref: '#/components/schemas/pbuser.User'
+            description: 响应-登录
+        pbauth.RefreshRequest:
+            type: object
+            properties: {}
+            description: 请求-刷新Jwt
+        pbauth.RefreshResponse:
+            type: object
+            properties:
+                token:
+                    type: string
+                user:
+                    $ref: '#/components/schemas/pbuser.User'
+            description: 响应-刷新Jwt
+        pbauth.RegisterRequest:
+            type: object
+            properties:
+                nickname:
+                    type: string
+                    description: 昵称
+                email:
+                    type: string
+                    description: 邮箱
+                password:
+                    type: string
+                    description: 密码
+            description: 请求-注册
+        pbauth.RegisterResponse:
+            type: object
+            properties:
+                token:
+                    type: string
+                user:
+                    $ref: '#/components/schemas/pbuser.User'
+            description: 响应-注册
+        pbuser.ListResponse:
+            type: object
+            properties:
+                total:
+                    type: string
+                    description: 总数
+                users:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/pbuser.User'
+                    description: 列表
+            description: 响应-用户列表
+        pbuser.UpdateRequest:
+            type: object
+            properties:
+                uid:
+                    type: string
+                    description: 用户ID
+                nickname:
+                    type: string
+                    description: 昵称
+                avatarUrl:
+                    type: string
+                    description: 头像地址
+            description: 请求-用户更新
+        pbuser.User:
+            type: object
+            properties:
+                uid:
+                    type: string
+                    description: 用户ID
+                typeId:
+                    type: integer
+                    description: 类型
+                    format: enum
+                account:
+                    type: string
+                    description: 账号
+                mobile:
+                    type: string
+                    description: 手机号
+                email:
+                    type: string
+                    description: 邮箱
+                nickname:
+                    type: string
+                    description: 昵称
+                avatarUrl:
+                    type: string
+                    description: 头像地址
+                sex:
+                    type: integer
+                    description: 性别
+                    format: enum
+tags:
+    - name: SAuth
+    - name: SUser

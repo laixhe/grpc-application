@@ -1,0 +1,21 @@
+http:
+  ip: 0.0.0.0
+  port: 6600
+  timeout: 0
+
+grpc:
+  ip: 0.0.0.0
+  port: 6800
+  timeout: 0
+
+jwt:
+  secret_key: 6Kbj0VFeXYMp60lEyiFoVq4UzqX8Z0GSSfnvTh2VuAQn0oHgQNYexU6yYVTk4xf9
+  expire_time: 604800
+
+orm:
+  # 驱动名称 mysql postgresql sqlite
+  driver: mysql
+  dsn: root:123456@tcp(127.0.0.1:3306)/webapi?charset=utf8mb4&parseTime=True&loc=Local
+  max_idle_count: 10
+  max_open_count: 100
+  max_life_time: 300

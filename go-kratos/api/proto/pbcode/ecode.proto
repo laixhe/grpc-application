@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package pbcode;
+
+option go_package = "go-kratos/api/gen/pbcode;pbcode";
+
+// 错误状态码
+enum ECode {
+    Success     = 0; // 成功
+    Service     = 1; // 服务错误
+    Param       = 2; // 参数错误
+    TipMessage  = 3; // 提示错误消息
+    JsonError   = 4; // JSON错误
+    AuthInvalid          = 100; // 授权无效
+    AuthExpire           = 101; // 授权过期
+    AuthUserError        = 102; // 用户或密码错误
+    UserExist            = 103; // 用户已存在
+    UserNotExist         = 104; // 用户不存在
+    EmailExist           = 105; // 邮箱已存在
+    EmailNotExist        = 106; // 邮箱不存在
+    PhoneExist           = 107; // 手机号码已存在
+    PhoneNotExist        = 108; // 手机号码不存在
+}

@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package pbuser;
+
+option go_package = "go-kratos/api/gen/pbuser;pbuser";
+
+import "proto/pbuser/user.proto";
+
+// 请求-用户列表
+message ListRequest {
+  // 每页数量（分页）
+  int64 page_size  = 1;
+  // 偏移id（分页）
+  int64 offset_id  = 2;
+}
+
+// 响应-用户列表
+message ListResponse {
+  // 总数
+  int64 total = 1;
+  // 列表
+  repeated User users = 2;
+}

@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package pbauth;
+
+option go_package = "go-kratos/api/gen/pbauth;pbauth";
+
+import "proto/pbuser/user.proto";
+
+// 请求-刷新Jwt
+message RefreshRequest{
+}
+
+// 响应-刷新Jwt
+message RefreshResponse {
+  string token = 1;
+  pbuser.User user = 2;
+}

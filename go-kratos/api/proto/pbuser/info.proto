@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package pbuser;
+
+option go_package = "go-kratos/api/gen/pbuser;pbuser";
+
+// 请求-用户信息
+message InfoRequest {
+  // 用户ID
+  int64 uid  = 1;
+}

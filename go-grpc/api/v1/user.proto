@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package v1api;
+
+option go_package = "go-grpc/api/gen/v1api;v1api";
+
+message User {
+  uint32 uid   = 1;
+  string uname = 2;
+  string email = 3;
+}

@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package pbuser;
+
+option go_package = "go-kratos/api/gen/pbuser;pbuser";
+
+// 请求-用户更新
+message UpdateRequest {
+  // 用户ID
+  int64 uid  = 1;
+  // 昵称
+  string nickname = 2;
+  // 头像地址
+  string avatar_url = 3;
+}

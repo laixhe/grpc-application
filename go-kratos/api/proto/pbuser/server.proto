@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package pbuser;
+
+option go_package = "go-kratos/api/gen/pbuser;pbuser";
+
+import "google/api/annotations.proto";
+import "proto/pbuser/user.proto";
+import "proto/pbuser/info.proto";
+import "proto/pbuser/list.proto";
+import "proto/pbuser/update.proto";
+
+service SUser {
+  // 用户信息
+  rpc Info(InfoRequest) returns (User) {
+    option (google.api.http) = {
+      get: "/api/v1/user/info"
+    };
+  }
+  // 用户列表
+  rpc List(ListRequest) returns (ListResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/user/list"
+    };
+  }
+  // 用户更新
+  rpc Update(UpdateRequest) returns (User) {
+    option (google.api.http) = {
+      post: "/api/v1/user/update"
+      body: "*"
+    };
+  }
+}

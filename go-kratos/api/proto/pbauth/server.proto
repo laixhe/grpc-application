@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package pbauth;
+
+option go_package = "go-kratos/api/gen/pbauth;pbauth";
+
+import "google/api/annotations.proto";
+import "proto/pbauth/register.proto";
+import "proto/pbauth/login.proto";
+import "proto/pbauth/refresh.proto";
+
+service SAuth {
+    // 注册
+    rpc Register(RegisterRequest) returns (RegisterResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/auth/register"
+            body: "*"
+          };
+    }
+    // 登录
+    rpc Login(LoginRequest) returns (LoginResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/auth/login"
+            body: "*"
+          };
+    }
+    // 刷新Jwt
+    rpc Refresh(RefreshRequest) returns (RefreshResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/auth/refresh"
+            body: "*"
+        };
+    }
+}

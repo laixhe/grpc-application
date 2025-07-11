@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package pbuser;
+
+option go_package = "go-kratos/api/gen/pbuser;pbuser";
+
+// 用户性别
+enum SexType {
+  SexUnknown    = 0;
+  SexMale       = 1; // 男
+  SexFemale     = 2; // 女
+}
+
+// 用户类型
+enum UserType {
+  UserTypeUnknown   = 0;
+  UserTypeOrdinary  = 1; // 普通用户
+}
+
+message User {
+  // 用户ID
+  int64 uid         = 1;
+  // 类型
+  UserType type_id  = 2;
+  // 账号
+  string account    = 3;
+  // 手机号
+  string mobile     = 4;
+  // 邮箱
+  string email      = 5;
+  // 昵称
+  string nickname   = 6;
+  // 头像地址
+  string avatar_url = 7;
+  // 性别
+  SexType sex       = 8;
+}

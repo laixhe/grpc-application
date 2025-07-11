@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package pbauth;
+
+option go_package = "go-kratos/api/gen/pbauth;pbauth";
+
+import "proto/pbuser/user.proto";
+
+// 请求-登录
+message LoginRequest {
+  // 邮箱
+  string email = 1;
+  // 密码
+  string password = 2;
+}
+
+// 响应-登录
+message LoginResponse {
+  string token = 1;
+  pbuser.User user = 2;
+}
