@@ -42,7 +42,7 @@ func (s *Server) Orm(key ...string) orm.Client {
 	}
 }
 
-func (s *Server) Init() *Server {
+func (s *Server) init() *Server {
 	if err := s.initOrm(s.config.Orm); err != nil {
 		panic(err)
 	}
@@ -51,8 +51,9 @@ func (s *Server) Init() *Server {
 
 // NewServer 创建服务
 func NewServer(configFile string) *Server {
-	return &Server{
+	s := &Server{
 		config: NewConfig(configFile),
 		orm:    make(map[string]orm.Client),
 	}
+	return s.init()
 }

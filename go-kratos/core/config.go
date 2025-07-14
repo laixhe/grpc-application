@@ -22,17 +22,17 @@ func (a *Addr) Addr() string {
 }
 
 type Config struct {
-	Orm  *orm.Config `json:"orm"`
 	Jwt  *jwt.Config `json:"jwt"`
+	Orm  *orm.Config `json:"orm"`
 	Http *Addr       `json:"http"`
 	Grpc *Addr       `json:"grpc"`
 }
 
 func (c *Config) Check() error {
-	if err := c.Orm.Check(); err != nil {
+	if err := c.Jwt.Check(); err != nil {
 		return err
 	}
-	if err := c.Jwt.Check(); err != nil {
+	if err := c.Orm.Check(); err != nil {
 		return err
 	}
 	if c.Http == nil {

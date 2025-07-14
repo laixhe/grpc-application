@@ -1,44 +1,32 @@
-/*
- Navicat Premium Data Transfer
+CREATE DATABASE `webapi` CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_unicode_ci';
 
- Source Server         : localhost
- Source Server Type    : MySQL
- Source Server Version : 80402 (8.4.2)
- Source Host           : localhost:3306
- Source Schema         : webapi
-
- Target Server Type    : MySQL
- Target Server Version : 80402 (8.4.2)
- File Encoding         : 65001
-
- Date: 19/09/2024 15:54:15
-*/
-
-SET NAMES utf8mb4;
-SET FOREIGN_KEY_CHECKS = 0;
-
--- ----------------------------
--- Table structure for user
--- ----------------------------
-DROP TABLE IF EXISTS `user`;
-CREATE TABLE `user`  (
-  `id` int UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '用户ID',
-  `account` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '账号',
-  `email` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '用户邮箱',
-  `password` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '用户密码',
-  `phone_area` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '手机国家电话区号',
-  `phone` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '手机号码',
-  `uname` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '用户名',
-  `nickname` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '昵称',
-  `sex` tinyint UNSIGNED NOT NULL DEFAULT 0 COMMENT '性别 1=男 2=女',
-  `birthday` datetime NULL DEFAULT NULL COMMENT '生日(年-月-日)',
+CREATE TABLE `user` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `type_id` int unsigned NOT NULL DEFAULT '0' COMMENT '类型 1普通',
+  `account` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '账号',
+  `mobile` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '手机号',
+  `email` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '邮箱',
+  `password` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '密码',
+  `nickname` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '昵称',
   `avatar_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '头像地址',
-  `cover_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '封面地址',
+  `sex` int unsigned NOT NULL DEFAULT '0' COMMENT '性别 1男 2女',
+  `states` int unsigned NOT NULL DEFAULT '0' COMMENT '状态 1正常 2封禁',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  `deleted_at` datetime NULL DEFAULT NULL COMMENT '删除时间',
-  PRIMARY KEY (`id`) USING BTREE,
-  INDEX `idx_email`(`email` ASC) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_email_key` (`email`),
+  UNIQUE KEY `user_account_key` (`account`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='用户';
 
-SET FOREIGN_KEY_CHECKS = 1;
+CREATE TABLE `user_extend` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `uid` int unsigned NOT NULL COMMENT '用户UID',
+  `wechat_unionid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '微信unionid',
+  `wechat_openid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '微信openid',
+  PRIMARY KEY (`id`),
+  KEY `user_extend_uid_idx` (`uid`),
+  KEY `user_extend_wechat_openid_idx` (`wechat_openid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='用户扩展';
+
+INSERT INTO `user` VALUES (1, 1, 'laixhe', '', 'laixhe@laixhe.com', '$2a$10$rbZOsGqxoREzt5mNCa4VfOjTcGKOKLeZahlO5e/PD8D5wJ7e4OmOe', 'laixhe', '', 1, 1, '2028-08-08 00:00:00', '2028-08-08 00:00:00');
+INSERT INTO `user_extend` VALUES (1, 1, '', '');

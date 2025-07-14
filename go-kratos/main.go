@@ -22,9 +22,12 @@ func init() {
 
 func main() {
 	flag.Parse()
-	coreServer := core.NewServer(ConfigFile).Init()
-	httpServer := server.NewHTTPServer(coreServer)
-	kratosApp := kratos.New(kratos.Server(httpServer))
+	logger := core.Logger()
+	coreServer := core.NewServer(ConfigFile)
+	httpServer := server.NewHTTPServer(coreServer, logger)
+	kratosApp := kratos.New(kratos.Metadata(map[string]string{}),
+		kratos.Logger(logger),
+		kratos.Server(httpServer))
 	if err := kratosApp.Run(); err != nil {
 		panic(err)
 	}

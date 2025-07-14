@@ -1,6 +1,8 @@
 package services
 
 import (
+	"github.com/go-kratos/kratos/v2/log"
+
 	"go-kratos/app/model/dao"
 	"go-kratos/core"
 )
@@ -11,11 +13,11 @@ type Service struct {
 	User *User
 }
 
-func NewService(server *core.Server) *Service {
+func NewService(server *core.Server, logger log.Logger) *Service {
 	modelDao := dao.NewDao(server)
 	service := &Service{
-		Auth: NewAuth(server, modelDao),
-		User: NewUser(server, modelDao),
+		Auth: NewAuth(server, modelDao, logger),
+		User: NewUser(server, modelDao, logger),
 	}
 	return service
 }

@@ -3,18 +3,22 @@ package services
 import (
 	"context"
 
+	"github.com/go-kratos/kratos/v2/log"
+
 	"go-kratos/api/gen/pbauth"
 	"go-kratos/app/model/dao"
 	"go-kratos/core"
 )
 
 type Auth struct {
+	log    *log.Helper
 	server *core.Server
 	dao    *dao.Dao
 }
 
-func NewAuth(server *core.Server, modelDao *dao.Dao) *Auth {
+func NewAuth(server *core.Server, modelDao *dao.Dao, logger log.Logger) *Auth {
 	return &Auth{
+		log:    log.NewHelper(logger),
 		server: server,
 		dao:    modelDao,
 	}

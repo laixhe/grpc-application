@@ -2,6 +2,8 @@ package controllers
 
 import (
 	"context"
+	
+	"github.com/go-kratos/kratos/v2/log"
 
 	"go-kratos/api/gen/pbauth"
 	"go-kratos/app/services"
@@ -10,12 +12,14 @@ import (
 
 type Auth struct {
 	pbauth.UnimplementedSAuthServer
+	log     *log.Helper
 	server  *core.Server
 	service *services.Service
 }
 
-func newAuth(server *core.Server, service *services.Service) *Auth {
+func newAuth(server *core.Server, service *services.Service, logger log.Logger) *Auth {
 	return &Auth{
+		log:     log.NewHelper(logger),
 		server:  server,
 		service: service,
 	}
@@ -23,6 +27,8 @@ func newAuth(server *core.Server, service *services.Service) *Auth {
 
 // Register 注册
 func (c *Auth) Register(ctx context.Context, req *pbauth.RegisterRequest) (*pbauth.RegisterResponse, error) {
+	c.log.WithContext(ctx).Debug(req)
+	c.log.Debug(req)
 	return &pbauth.RegisterResponse{}, nil
 }
 

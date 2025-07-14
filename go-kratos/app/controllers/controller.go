@@ -1,6 +1,8 @@
 package controllers
 
 import (
+	"github.com/go-kratos/kratos/v2/log"
+
 	"go-kratos/app/services"
 	"go-kratos/core"
 )
@@ -11,10 +13,10 @@ type Controller struct {
 	User *User
 }
 
-func NewController(server *core.Server) *Controller {
-	service := services.NewService(server)
+func NewController(server *core.Server, logger log.Logger) *Controller {
+	service := services.NewService(server, logger)
 	return &Controller{
-		Auth: newAuth(server, service),
-		User: newUser(server, service),
+		Auth: newAuth(server, service, logger),
+		User: newUser(server, service, logger),
 	}
 }
