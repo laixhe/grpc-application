@@ -6,9 +6,9 @@ require (
 	github.com/go-kratos/kratos/v2 v2.8.4
 	github.com/golang-jwt/jwt/v5 v5.2.3
 	github.com/gorilla/handlers v1.5.2
-	github.com/laixhe/gonet/jwt v0.0.0-20250714090136-43522c1dbf17
-	github.com/laixhe/gonet/orm/mysql v0.0.0-20250714090136-43522c1dbf17
-	github.com/laixhe/gonet/orm/orm v0.0.0-20250714090136-43522c1dbf17
+	github.com/laixhe/gonet/jwt v0.0.0-20250724085808-34c9ce4b2471
+	github.com/laixhe/gonet/orm/mysql v0.0.0-20250724085808-34c9ce4b2471
+	github.com/laixhe/gonet/orm/orm v0.0.0-20250724085808-34c9ce4b2471
 	google.golang.org/genproto/googleapis/api v0.0.0-20250721164621-a45f3dfb1074
 	google.golang.org/grpc v1.74.2
 	google.golang.org/protobuf v1.36.6

@@ -2,6 +2,8 @@ package main
 
 import (
 	"flag"
+	"fmt"
+	"runtime"
 
 	"github.com/go-kratos/kratos/v2"
 
@@ -10,8 +12,8 @@ import (
 )
 
 var (
-	// Version 指定版本号 ( main.Version )
-	Version string
+	// GitVersion 指定版本号 ( go build -ldflags "-X main.GitVersion=xxx" )
+	GitVersion string
 	// ConfigFile 指定配置文件
 	ConfigFile string
 )
@@ -22,6 +24,8 @@ func init() {
 
 func main() {
 	flag.Parse()
+	fmt.Printf("[go version: %s] [config file: %s] [git: %s] \n", runtime.Version(), ConfigFile, GitVersion)
+
 	logger := core.Logger()
 	coreServer := core.NewServer(ConfigFile)
 	httpServer := server.NewHTTPServer(coreServer, logger)
